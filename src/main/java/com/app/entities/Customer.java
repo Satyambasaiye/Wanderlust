@@ -21,10 +21,7 @@ import lombok.Setter;
 
 public class Customer extends BaseEntity{
 	
-//	 @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//	    @MapsId
-//	    private Address address;
-//	
+
 	
 
 }
