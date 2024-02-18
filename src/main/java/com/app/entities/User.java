@@ -26,7 +26,4 @@ public class User extends BaseEntity {
 //	    @MapsId
 //	    private Address address;
 	
-	
-	
-
 }

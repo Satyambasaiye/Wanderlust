@@ -21,7 +21,4 @@ import lombok.Setter;
 
 public class Customer extends BaseEntity{
 	
-
-	
-
 }
