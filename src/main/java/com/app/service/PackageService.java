@@ -2,12 +2,9 @@ package com.app.service;
 
 import java.util.List;
 
-import org.springframework.data.domain.Pageable;
-
+import com.app.dto.ApiResponse;
 import com.app.dto.PackageDto;
 import com.app.entities.Categories;
-
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 public interface PackageService {
 List<PackageDto> getAllPackages(int pageNumber,int pageSize);
@@ -18,7 +15,11 @@ List<PackageDto> getPackageByCategories(int pageNumber, int pageSize, Categories
 
 PackageDto addNewPackage(PackageDto dto);
 
-//ApiResponse deletePackage(String pacId);
+ApiResponse deletePackage(String pacId);
+
+PackageDto updatePackage(String pacId,PackageDto dto);
+
+//ApiResponse deletePackagekagekage(String pacId);
 
 
 
