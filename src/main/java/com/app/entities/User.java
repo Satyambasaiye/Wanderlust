@@ -14,6 +14,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString(callSuper = true)
 @AllArgsConstructor
+@Table(name = "Users")
 
 public class User extends BaseEntity {
 	

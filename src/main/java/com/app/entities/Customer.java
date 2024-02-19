@@ -1,12 +1,9 @@
 package com.app.entities;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 
+
+import javax.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,7 +15,20 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-
 public class Customer extends BaseEntity{
 	
-}
+	@OneToMany(mappedBy ="customer",cascade = CascadeType.ALL,orphanRemoval = true)
+	private List<Booking> bookings=new ArrayList<Booking>();
+	
+
+	public void bookPackage(Booking b)
+	{
+		bookings.add(b);
+		b.setCustomer(this);
+	}
+	
+	public void cancelBooking(Booking b)
+	{
+		bookings.remove(b);
+		b.setCustomer(null);
+	}}
