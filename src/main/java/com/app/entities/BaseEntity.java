@@ -40,9 +40,7 @@ public class BaseEntity {
     
     @Column(length = 20)
     private String country;
-    
-    
-    
+        
     @Column(length = 20, name = "zip_code")
     private String zipCode;
     

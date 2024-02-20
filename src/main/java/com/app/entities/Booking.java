@@ -24,11 +24,11 @@ public class Booking {
     @Column(name = "BookingID")
     private Long bookingID;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "CustomerID")
     private Customer customer;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "PackageID")
     private Package Package;
 
@@ -38,11 +38,18 @@ public class Booking {
 
     @Column(name = "ContactInfo",length = 100)
     private String contactInfo;
-    
 
     @Column(length = 15)
     @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
+
+	@Override
+	public String toString() {
+		return "Booking [bookingID=" + bookingID +"id:->"+customer.getId()+" and ---"+Package.getPackageId()+ "---, bookingDate=" + bookingDate + ", contactInfo=" + contactInfo
+				+ ", paymentStatus=" + paymentStatus + "]";
+	}
+    
+    
 
 }
 

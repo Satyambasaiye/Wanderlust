@@ -42,6 +42,7 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 		throw new ApiException("password doesent match");
 	}
+	
 	@Override
 	public ApiResponse deleteById(Long Id) {
 		
@@ -51,6 +52,7 @@ public class CustomerServiceImpl implements CustomerService {
 			
 		return new ApiResponse("customer detail of customer with id "+cust.getId()+"deleted...");
 	}
+	
 	@Override
 	public CustomerDTO updateCustomer(Long id, CustomerDTO dto) {
 		if(dto.getPassword().equals(dto.getConfirmPassword()))
@@ -67,11 +69,13 @@ public class CustomerServiceImpl implements CustomerService {
 		throw new ApiException("password dont match");
 		
 	}
+	
 	@Override
 	public Customer getCusstomer(Long id)
 	{
 		return customerRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("invalid customer id"));
 	}
+	
 	@Override
 	public List<CustomerDTO> getAllCustomer(int pagenumber, int pageSize) {
 		Pageable pageable = PageRequest.of(pagenumber, pageSize);
@@ -80,8 +84,6 @@ public class CustomerServiceImpl implements CustomerService {
 		return custList.stream().map(cust->mapper.map(cust, CustomerDTO.class))
 				.collect(Collectors.toList());
 	}
-	
-	
 	
 
 }

@@ -22,7 +22,7 @@ public class User extends BaseEntity {
 	@Column(length = 15)
 	private UserType type;
 	@Column(name = "is_active" ,columnDefinition = "boolean default true")
-	private boolean status;
+	private boolean status=true;
 //	 @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //	    @MapsId
 //	    private Address address;
