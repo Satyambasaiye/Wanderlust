@@ -34,9 +34,6 @@ public class BookingController {
 	@Autowired
 	private BookingService bookingService;
 	
-	
-	
-	
 	PropertyMap<BookingDTO, Booking>BookingMapping=new PropertyMap<BookingDTO, Booking>() {
 		 protected void configure() {
 			 map().getCustomer().setId(source.getId());

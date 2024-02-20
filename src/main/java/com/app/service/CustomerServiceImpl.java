@@ -18,6 +18,7 @@ import com.app.custom_exceptions.ResourceNotFoundException;
 import com.app.dao.CustomerDao;
 import com.app.dto.ApiResponse;
 import com.app.dto.CustomerDTO;
+import com.app.dto.LoginDTO;
 import com.app.entities.Customer;
 
 @Service
@@ -83,6 +84,23 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		return custList.stream().map(cust->mapper.map(cust, CustomerDTO.class))
 				.collect(Collectors.toList());
+	}
+
+	@Override
+	public ApiResponse Login(@Valid LoginDTO dto) {
+		Customer cust= customerRepo.findByEmail(dto.getEmail());
+		if(cust==null)
+		{
+			return  new ApiResponse("invalid login details");
+
+		}
+		if(cust.getPassword().equals(dto.getPassword()))
+		{
+			return new ApiResponse("login success");
+		}
+		
+		
+		return  new ApiResponse("invalid login details");
 	}
 	
 

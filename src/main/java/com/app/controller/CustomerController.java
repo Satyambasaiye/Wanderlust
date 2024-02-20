@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.CustomerDTO;
+import com.app.dto.LoginDTO;
 import com.app.service.CustomerService;
 
 
@@ -34,6 +35,12 @@ public class CustomerController
 	public ResponseEntity<?>getCustomer(@PathVariable Long id)
 	{
 		return ResponseEntity.ok(custService.getCusstomer(id));
+	}
+	
+	@PostMapping("/login")
+	public ResponseEntity<?>login(@RequestBody @Valid LoginDTO dto){
+		return ResponseEntity.status(401).body(custService.Login(dto));
+		
 	}
 	
 	@PostMapping

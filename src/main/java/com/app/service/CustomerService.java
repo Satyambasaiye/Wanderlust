@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.app.dao.CustomerDao;
 import com.app.dto.CustomerDTO;
+import com.app.dto.LoginDTO;
 import com.app.entities.Customer;
 import com.app.dto.AddressDTO;
 import com.app.dto.ApiResponse;
@@ -25,5 +26,7 @@ public interface CustomerService {
 
 
 	 List<CustomerDTO> getAllCustomer(int pagenumber, int pageSize) ;
+
+	ApiResponse Login(@Valid LoginDTO dto);
 
 }

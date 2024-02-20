@@ -3,6 +3,8 @@ package com.app.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -14,6 +16,7 @@ import com.app.custom_exceptions.ApiException;
 import com.app.custom_exceptions.ResourceNotFoundException;
 import com.app.dao.UserDao;
 import com.app.dto.ApiResponse;
+import com.app.dto.LoginDTO;
 import com.app.dto.UserDTO;
 import com.app.entities.Customer;
 import com.app.entities.User;
@@ -61,7 +64,6 @@ public class UserServiceImpl implements UserService
 
 	@Override
 	public User getUser(Long id) {
-		// TODO Auto-generated method stub
 		return userRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("invalid customer id"));
 	}
 
@@ -72,6 +74,22 @@ public class UserServiceImpl implements UserService
 		List<User>UserList=userRepo.findAll(pageable).getContent();
 		return UserList.stream().map(user->mapper.map(user, UserDTO.class))
 				.collect(Collectors.toList());
+	}
+	
+	@Override
+	public ApiResponse Login(@Valid LoginDTO dto) {
+		User user= userRepo.findByEmail(dto.getEmail());
+		if(user==null)
+		{
+			return  new ApiResponse("invalid login details");
+
+		}
+		if(user.getPassword().equals(dto.getPassword()))
+		{
+			return new ApiResponse("login success");
+		}
+			
+		return  new ApiResponse("invalid login details");
 	}
 	
 }

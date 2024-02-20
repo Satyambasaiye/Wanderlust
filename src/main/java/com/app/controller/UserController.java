@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.dto.LoginDTO;
 import com.app.dto.UserDTO;
 import com.app.service.UserService;
 
@@ -34,6 +35,12 @@ public class UserController {
 	public ResponseEntity<?> getUser(@PathVariable Long id)
 	{
 		return ResponseEntity.ok(userService.getUser(id));
+	}
+	
+	@PostMapping("/login")
+	public ResponseEntity<?>login(@RequestBody @Valid LoginDTO dto){
+		return ResponseEntity.status(401).body(userService.Login(dto));
+		
 	}
 	
 	@PostMapping
