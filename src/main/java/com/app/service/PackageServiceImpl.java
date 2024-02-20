@@ -11,13 +11,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.app.custom_exceptions.ResourceNotFoundException;
 import com.app.dao.PackageDao;
 import com.app.dto.PackageDto;
 import com.app.entities.Categories;
 import com.app.entities.Package;
 
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-
+import com.app.dto.ApiResponse;
 @Service
 @Transactional
 public class PackageServiceImpl implements PackageService {
@@ -26,6 +26,8 @@ public class PackageServiceImpl implements PackageService {
 	private PackageDao packrepo;
 	@Autowired
 	private ModelMapper mapper;
+	
+	
 
 	@Override
 	public List<PackageDto> getAllPackages(int pageNumber, int pageSize) {
@@ -67,6 +69,28 @@ public class PackageServiceImpl implements PackageService {
 
 		return mapper.map(savedpac,PackageDto.class);
 	}
+	
+	@Override
+	public ApiResponse deletePackage(String pacId) {
+		Package pac=packrepo.findById(pacId).
+				orElseThrow(()->new ResourceNotFoundException("invalid PackageId"));
+		packrepo.delete(pac);
+		return new ApiResponse("package with packageId "+pac.getPackageId()+" deleted");
+		
+	}
+
+	@Override
+	public PackageDto updatePackage(String pacId,PackageDto dto) {
+		Package pac=packrepo.findById(pacId).
+				orElseThrow(()->new ResourceNotFoundException("invalid packageId"));
+		mapper.map(dto, pac);
+		System.out.println("after mapping package");
+		dto.setPackageId(pacId);
+		return dto;
+		
+
+	}
+	
 
 
 
