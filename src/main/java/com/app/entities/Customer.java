@@ -20,6 +20,23 @@ public class Customer extends BaseEntity{
 	@OneToMany(mappedBy ="customer",cascade = CascadeType.ALL,orphanRemoval = true)
 	private List<Booking> bookings=new ArrayList<Booking>();
 	
+	
+	
+	@OneToMany(mappedBy ="customer",cascade = CascadeType.ALL,orphanRemoval = true)
+	private List<Review> reviews=new ArrayList<Review>();
+	
+	public void addReview(Review r)
+	{
+		reviews.add(r);
+		r.setCustomer(this);
+	}
+	
+	public void deleteReview(Review r)
+	{
+		reviews.remove(r);
+		r.setCustomer(null);
+	}
+	
 
 	public void bookPackage(Booking b)
 	{
@@ -31,4 +48,10 @@ public class Customer extends BaseEntity{
 	{
 		bookings.remove(b);
 		b.setCustomer(null);
+	}
+
+	@Override
+	public String toString() {
+		return "Customer [getId()=" + getId() + ", getFname()=" + getFname() + ", getLname()=" + getLname()
+				+ ", getEmail()=" + getEmail() + ", getPhone()=" + getPhone() + "]";
 	}}
