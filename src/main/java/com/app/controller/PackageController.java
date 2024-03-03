@@ -31,7 +31,7 @@ public class PackageController {
 	
 	@GetMapping
 	public ResponseEntity<?>getAllPacsPaginated(@RequestParam(defaultValue="0",required=false)int pagenumber,
-			@RequestParam(defaultValue="3",required=false)int pageSize){
+			@RequestParam(defaultValue="10",required=false)int pageSize){
 		
 		
 		System.out.println("in getall pac"+pagenumber+" "+pageSize);

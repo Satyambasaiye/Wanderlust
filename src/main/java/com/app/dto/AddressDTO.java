@@ -23,6 +23,7 @@ public class AddressDTO {
 	
 	private String country;
 	
+	
 	private String zipCode;
 	private LocalDate someDate;
 	

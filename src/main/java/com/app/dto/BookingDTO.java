@@ -7,6 +7,7 @@ import javax.validation.constraints.NotBlank;
 import com.app.entities.Customer;
 import com.app.entities.Package;
 import com.app.entities.PaymentStatus;
+import com.app.validations.StartDateBeforeEnd;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -18,14 +19,13 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class BookingDTO {
-	@JsonProperty(access = Access.READ_ONLY)
-	
+	@JsonProperty(access = Access.READ_ONLY)	
     private Long bookingID;
-    
+    @NotBlank
     private Long id;
-
+    @NotBlank
 	private String packageId;
-
+    
     private LocalDate bookingDate;
     
     private String contactInfo;

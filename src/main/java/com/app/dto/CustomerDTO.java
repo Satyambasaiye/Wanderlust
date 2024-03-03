@@ -3,7 +3,10 @@ package com.app.dto;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -26,15 +29,19 @@ public class CustomerDTO {
     private String lname;
     
 	@NotBlank
+	@Email
     private String email;
     
 	@NotBlank
     private String phone;
     
-	@JsonProperty(access = Access.WRITE_ONLY) //required only in de-ser.
+	@JsonProperty(access = Access.WRITE_ONLY) 
+	@Length(max = 15,min = 8)
     private String password;
 	
 	@JsonProperty(access = Access.WRITE_ONLY)
+	@Length(max = 15,min = 8)
+
 	private String confirmPassword;
    
 	@NotBlank

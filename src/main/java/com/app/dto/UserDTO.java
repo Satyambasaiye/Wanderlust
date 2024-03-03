@@ -1,7 +1,10 @@
 package com.app.dto;
 
 import javax.persistence.Column;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.app.entities.UserType;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -27,15 +30,20 @@ public class UserDTO {
     private String lname;
     
 	@NotBlank
+	@Email
     private String email;
     
 	@NotBlank
     private String phone;
     
-	@JsonProperty(access = Access.WRITE_ONLY) //required only in de-ser.
+	@JsonProperty(access = Access.WRITE_ONLY) 
+	@Length(max = 15,min = 8)
+
     private String password;
 	
 	@JsonProperty(access = Access.WRITE_ONLY)
+	@Length(max = 15,min = 8)
+
 	private String confirmPassword;
    
 	@NotBlank
@@ -54,9 +62,9 @@ public class UserDTO {
     private String zipCode;
 	
 	private UserType type;
-	@JsonProperty(access = Access.READ_ONLY )
 	
-	private boolean status;
+	@JsonProperty(access = Access.READ_ONLY )
+	private boolean status=true;
     
     
 
