@@ -25,7 +25,7 @@ public class BaseEntity {
     @Column(length = 20, nullable = false)
     private String phone;
     
-    @Column(length = 15, nullable = false)
+    @Column(length = 400, nullable = false)
     private String password;
     
     
