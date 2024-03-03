@@ -1,11 +1,8 @@
 package com.app.dto;
 
 import javax.persistence.Column;
-import javax.persistence.Id;
 
 import com.app.entities.Categories;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.Getter;
 import lombok.Setter;
